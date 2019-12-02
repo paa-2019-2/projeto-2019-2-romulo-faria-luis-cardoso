@@ -1,0 +1,28 @@
+(bubblesort
+ (bubbling_TCC1 0
+  (bubbling_TCC1-1 nil 3784245054 ("" (subtype-tcc) nil nil) nil nil))
+ (bubbling_TCC2 0
+  (bubbling_TCC2-1 nil 3784245054 ("" (subtype-tcc) nil nil) nil nil))
+ (bubbling_TCC3 0
+  (bubbling_TCC3-1 nil 3784245054 ("" (subtype-tcc) nil nil) nil nil))
+ (bubbling_TCC4 0
+  (bubbling_TCC4-1 nil 3784245054 ("" (termination-tcc) nil nil) nil
+   nil))
+ (bubbling_TCC5 0
+  (bubbling_TCC5-1 nil 3784245054 ("" (subtype-tcc) nil nil) nil nil))
+ (bubbling_TCC6 0
+  (bubbling_TCC6-1 nil 3784245054 ("" (termination-tcc) nil nil) nil
+   nil))
+ (cbubbling_equiv 0
+  (cbubbling_equiv-1 nil 3784245079
+   ("" (grind) (("" (postpone) nil nil)) nil) nil shostak))
+ (bubblesort_aux_TCC1 0
+  (bubblesort_aux_TCC1-1 nil 3784245054 ("" (subtype-tcc) nil nil) nil
+   nil))
+ (bubblesort_aux_TCC2 0
+  (bubblesort_aux_TCC2-1 nil 3784245054 ("" (termination-tcc) nil nil)
+   nil nil))
+ (bubblesort_TCC1 0
+  (bubblesort_TCC1-1 nil 3784245054 ("" (subtype-tcc) nil nil) nil
+   nil)))
+
