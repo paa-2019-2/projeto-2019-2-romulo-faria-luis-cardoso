@@ -11,7 +11,7 @@ IMPORTING   sorting
 IMPORTING complexity
 
 l,l1,l2 : VAR list[nat]
-i,j,k,n,c : VAR nat
+i,j,k,n : VAR nat
 
 % This is the bubbling function that moves the greates key in
 % the n-prefix of a list l to the n-th position of the list. 
@@ -23,19 +23,17 @@ ENDIF
 MEASURE n   
 
 %bubbling com contador
-cbubbling(l, c, ( n : below[l`length])) : RECURSIVE [list[nat], nat] =
+cbubbling(l, c:nat, ( n : below[l`length])) : RECURSIVE [list[nat], nat] =
 	IF n = 0 THEN (l, c)
-	ELSIF car(l) > car(cdr(l)) THEN (cons(car(cdr(l)), aux`1), aux`2 + 1)
-	     WHERE aux = cbubbling(cons(car(l),cdr(cdr(l))), c, n - 1)
-	ELSE (cons(car(l), aux`1), aux`2 + 1)
- 	     WHERE aux = cbubbling(cdr(l), c, n - 1)
+	ELSIF car(l) > car(cdr(l)) THEN cons(car(cdr(l)), bubbling(cons(car(l),cdr(cdr(l))), c + 1, n - 1))
+	ELSE cons(car(l), bubbling(cdr(l), c + 1, n - 1))
 	ENDIF
 	MEASURE n
 
 %equivalencia bubbling e cbubbling
 cbubbling_equiv: LEMMA
-		FORALL (l:list[nat], c:nat, n:below[l`length]):
-			bubbling(l,n) = cbubbling(l,c,n)`1
+		FORALL (l:list[nat]):
+			bubbling(l) = cbubbling(l)`1
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
