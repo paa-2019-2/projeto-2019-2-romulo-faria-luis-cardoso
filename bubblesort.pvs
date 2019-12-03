@@ -16,11 +16,11 @@ i,j,k,n,c : VAR nat
 % This is the bubbling function that moves the greates key in
 % the n-prefix of a list l to the n-th position of the list. 
 bubbling(l, ( n : below[ l`length])) : RECURSIVE  list[nat] =
-IF n = 0 THEN l
-ELSIF car(l) > car(cdr(l)) THEN cons(car(cdr(l)), bubbling(cons(car(l),cdr(cdr(l))), n - 1))
-ELSE cons(car(l), bubbling(cdr(l), n - 1))
-ENDIF
-MEASURE n   
+	IF n = 0 THEN l
+	ELSIF car(l) > car(cdr(l)) THEN cons(car(cdr(l)), bubbling(cons(car(l),cdr(cdr(l))), n - 1))
+      	ELSE cons(car(l), bubbling(cdr(l), n - 1))
+     	ENDIF
+	MEASURE n   
 
 %bubbling com contador
 cbubbling(l, c, ( n : below[l`length])) : RECURSIVE [list[nat], nat] =
@@ -34,20 +34,30 @@ cbubbling(l, c, ( n : below[l`length])) : RECURSIVE [list[nat], nat] =
 
 %equivalencia bubbling e cbubbling
 cbubbling_equiv: LEMMA
-		FORALL (l:list[nat], c:nat, n:below[l`length]):
-			bubbling(l,n) = cbubbling(l,c,n)`1
+	FORALL (l:list[nat], c:nat, n:below[l`length]):
+		bubbling(l, n) = cbubbling(l, c, n)`1
 
-			
+%qtd elementos da lista (length)
+cbubbling_length: LEMMA
+	FORALL (l:list[nat], c:nat, (n:below[l`length])):
+		length(cbubbling(l, c, n)`1) = length(l)
+
+%elementos de entrada mesmos de saida
+cbubbling_elem: LEMMA
+	FORALL (l:list[nat], c:nat, n:below[l`length]):
+	       permutations(l, cbubbling(l, c, n)`1)
+	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 % This is the auxiliary function that calls bubbling adequately
 % starting from n. The result is that the first n+1 elements of the
 % given input list will be sorted. 
 bubblesort_aux(l, ( n : below[l`length ] )) : RECURSIVE list[nat] =
-IF n = 0 THEN l
-ELSE bubblesort_aux(bubbling(l, n), n-1)
-ENDIF
-MEASURE n
+	IF n = 0 THEN l
+	ELSE bubblesort_aux(bubbling(l, n), n - 1)
+	ENDIF
+	MEASURE n
 
 %bubblesort_aux com contador
 cbubblesort_aux(l, c, (n:below[l`length])) : RECURSIVE [list[nat], nat] =
@@ -59,9 +69,8 @@ cbubblesort_aux(l, c, (n:below[l`length])) : RECURSIVE [list[nat], nat] =
 
 %equivalencia bubblesort_aux e cbubblesort_aux
 cbubblesort_aux_equiv: LEMMA
-		FORALL (l:list[nat], c:nat, n:below[l`length]):
-			bubblesort_aux(l,n) = cbubblesort_aux(l,c,n)`1
-
+	FORALL (l:list[nat], c:nat, n:below[l`length]):
+		bubblesort_aux(l, n) = cbubblesort_aux(l, c, n)`1
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,11 +80,26 @@ cbubblesort_aux_equiv: LEMMA
 % bubblesort_aux starting from length of the input list minus one.  
 % As result, bubblesort_aux will sort the whole input list.
 bubblesort(l) : list[nat] = 
-IF null?(l) THEN l
-ELSE bubblesort_aux(l, l`length - 1 )
-ENDIF
+	IF null?(l) THEN l
+	ELSE bubblesort_aux(l, l`length - 1 )
+	ENDIF
 
-%
+%bubblesort com contador
+cbubblesort(l) : [list[nat], nat] =
+	IF null?(l) THEN (l, 0)
+	ELSE cbubblesort_aux(l, 0, l`length - 1)
+	ENDIF
+
+%equivalencia bubblesort e cbubblesort
+cbubblesort_equiv: LEMMA
+	FORALL (l:list[nat]):
+	       bubblesort(l) = cbubblesort(l)`1	   
+
+%complexidade cbubblesort (n2)
+cbubblesort_complex: LEMMA
+	FORALL (l:list[nat]):
+	       cbubblesort(l)`2 = (n^2 - n)/2
+	       WHERE n = length(l)
 
 
 END bubblesort
