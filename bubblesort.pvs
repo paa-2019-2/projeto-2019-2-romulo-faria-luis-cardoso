@@ -4,6 +4,13 @@
 %%% Last modification:  April 28 2015
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Trabalho de Projeto e Analise de Algoritmos
+%%% Universidade de Brasilia
+%%% Romulo Farias, Luis F. C. Cardoso
+%%% Last modification:  December 5 2019
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 bubblesort : THEORY
 BEGIN
 
