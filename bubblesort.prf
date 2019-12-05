@@ -14,6 +14,21 @@
   (bubbling_TCC6-1 nil 3784245054 ("" (termination-tcc) nil nil) nil
    nil))
  (cbubbling_equiv 0
+  (equiv2 "pqp..." 3784409991
+   ("" (induct l)
+    (("1" (skolem-typepred) (("1" (grind) nil nil)) nil)
+     ("2" (skeep)
+      (("2" (skeep)
+        (("2" (grind)
+          (("1" (typepred n)
+            (("1" (expand list2finseq) (("1" (postpone) nil nil)) nil))
+            nil)
+           ("2" (postpone) nil nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   nil shostak)
   (cbubbling_equiv-1 nil 3784245079
    ("" (skeep)
     (("" (expand "cbubbling")
@@ -40,5 +55,8 @@
    shostak))
  (bubblesort_TCC1 0
   (bubblesort_TCC1-1 nil 3784245054 ("" (subtype-tcc) nil nil) nil
-   nil)))
+   nil))
+ (cbubblesort_complex_TCC1 0
+  (cbubblesort_complex_TCC1-1 nil 3784332175 ("" (subtype-tcc) nil nil)
+   nil nil)))
 
